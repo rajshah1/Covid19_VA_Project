@@ -49,7 +49,7 @@ st.write(welcome)
 ###dashboard options for the sidebar
 st.sidebar.title("Covid19 Dashboard")
 dashOptions = st.sidebar.selectbox("Select a Menu Option to display:", 
-                                   ('Tracking', 'New Cases', 'Vaccines', 'Comparison'))
+                                   ('Vacination', 'Cases Tracker', 'New Cases', 'Comparison'))
     
 # displays headers fore each dashboard
 st.header(dashOptions)
@@ -80,7 +80,7 @@ if dashOptions == 'Comparison':
   
 
 # dashboard for tracking 
-if dashOptions == 'Tracking':
+if dashOptions == 'Cases Tracker':
     
     option = st.sidebar.multiselect('Which state(s) do you want in track?', cols, cols[32])
    
@@ -151,7 +151,7 @@ if dashOptions == 'New Cases':
     
     
 # dashboard for new cases
-if dashOptions == 'Vaccines':
+if dashOptions == 'Vacination':
     
     cols_c = ['Janssen','Moderna','Pfizer', 'Other MF']
     option_selectbox = st.sidebar.multiselect('Select a Vaccine Manufacturer(s):', cols_c, cols_c[2], key=4)

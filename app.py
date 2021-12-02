@@ -34,12 +34,12 @@ dfcovid = load_data_covid()
 
 
 # main points
-st.title('Covid19 Visualizations')
+st.title('COVID-19 Visual Anaylsis')
 
 welcome = ("""
     ### Welcome! Use the panel on the left to navigate to different dashboards.
     
-    Note: The data only pertains to how Covid19 has effected the United States.
+    Note: Data represents Covid trends in the United States
 """)
 
 st.write(welcome)
@@ -47,9 +47,9 @@ st.write(welcome)
 
 
 ###dashboard options for the sidebar
-st.sidebar.title("Dashboard Options")
-dashOptions = st.sidebar.selectbox("Choose a Dashboard to display:", 
-                                   ( 'Comparison Dashboard', 'Tracking Dashboard', 'New Cases Dashboard', 'Vaccines Dashboard'))
+st.sidebar.title("Covid19 Dashboard")
+dashOptions = st.sidebar.selectbox("Select a Menu Option to display:", 
+                                   ('Tracking', 'New Cases', 'Vaccines', 'Comparison'))
     
 # displays headers fore each dashboard
 st.header(dashOptions)
@@ -62,17 +62,17 @@ cols = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'C
 
 
 # dashboard for bar chart comparisons
-if dashOptions == 'Comparison Dashboard':
+if dashOptions == 'Comparison':
     
     
-    st.write("Indiviual Bar Chart")
+    st.write("Bar Chart")
     
     cols_catagories = ['Confirmed','Deaths','Recovered']
     option_selectbox = st.sidebar.selectbox('Select a category:', cols_catagories)
     st.bar_chart(dfcovid[option_selectbox], width=800, height=500)
     
     
-    st.write("Comparison Bar Chart")
+    st.write("Comparison Bar Chart with Specific Category")
     
     option_multiselect = st.sidebar.multiselect('Select one to more categories:', cols_catagories, cols_catagories[0])
     st.bar_chart(dfcovid[option_multiselect], width=800, height=500)
@@ -80,9 +80,9 @@ if dashOptions == 'Comparison Dashboard':
   
 
 # dashboard for tracking 
-if dashOptions == 'Tracking Dashboard':
+if dashOptions == 'Tracking':
     
-    option = st.sidebar.multiselect('Which state(s) do you want track?', cols, cols[32])
+    option = st.sidebar.multiselect('Which state(s) do you want in track?', cols, cols[32])
    
     #chart for tracking covid cases
     df = dfcase.reset_index()
@@ -125,7 +125,7 @@ if dashOptions == 'Tracking Dashboard':
     
     
 # dashboard for new cases
-if dashOptions == 'New Cases Dashboard':
+if dashOptions == 'New Cases':
     
     
     option1 = st.sidebar.multiselect('Select a state(s):', cols, cols[32],  key=1)
@@ -151,9 +151,9 @@ if dashOptions == 'New Cases Dashboard':
     
     
 # dashboard for new cases
-if dashOptions == 'Vaccines Dashboard':
+if dashOptions == 'Vaccines':
     
-    cols_c = ['Janssen','Moderna','Pfizer', 'Unknown Manufacturer']
+    cols_c = ['Janssen','Moderna','Pfizer', 'Other MF']
     option_selectbox = st.sidebar.multiselect('Select a Vaccine Manufacturer(s):', cols_c, cols_c[2], key=4)
     
     df2 = dfvaccine.reset_index()
@@ -164,7 +164,7 @@ if dashOptions == 'Vaccines Dashboard':
     x=alt.X('value:Q', title='Doses'),
     y='State:N',
     color='key:N',
-    tooltip=['Janssen:Q', 'Moderna:Q', 'Pfizer:Q', 'Unknown Manufacturer:Q']
+    tooltip=['Janssen:Q', 'Moderna:Q', 'Pfizer:Q', 'Other MF:Q']
     ).properties(
     title='Vaccines Administered per State',
     width=700,

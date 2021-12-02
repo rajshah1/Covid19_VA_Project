@@ -3,7 +3,13 @@
 This project was created in order to help interpret data collected on Covid19 in the United States.
 The project covers issues on cases, deaths, and vaccinations in the US.
 
+Application URL :: https://va-covid-st.herokuapp.com/
+
+
 Sources for this project are from another github repository and the CDC (Centers for Disease Control and Prevention). You can use the links below for more information on where the data was collected.
+
+
+
 
 https://github.com/CSSEGISandData/COVID-19
 
